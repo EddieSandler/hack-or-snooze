@@ -50,3 +50,27 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+
+//Gets the data from the Add story form, calls the .addStory method and puts that new story on the page.
+
+function putNewStoryOnPage(evt) {
+  evt.preventDefault();
+  const $author = $("#author-name").val();
+
+  const $storyTitle = $("#story-title").val();
+
+  const $storyURL = $("#story-url").val();
+
+  console.log($author,$storyTitle,$storyURL)
+
+
+
+}
+ 
+ 
+  
+
+
+
+

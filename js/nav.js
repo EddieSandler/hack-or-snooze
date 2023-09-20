@@ -33,6 +33,7 @@ function updateNavOnLogin() {
   $navSubmit.show();
   $navLogin.hide();
   $navLogOut.show();
+
   $loginForm.hide();
   $signupForm.hide()
 
@@ -40,7 +41,8 @@ function updateNavOnLogin() {
 }
 
 
-function navStoryForm() {
+// show story submit form when 'submit' is clcked
+function showAddStoryForm() {
   console.debug("navStoryForm")
   $submitStoryForm.show()
  
@@ -48,4 +50,5 @@ function navStoryForm() {
 }
 
 
-$navSubmit.on("click", navStoryForm);
+$navSubmit.on("click", showAddStoryForm);
+$submitStoryForm.on("submit",putNewStoryOnPage);
