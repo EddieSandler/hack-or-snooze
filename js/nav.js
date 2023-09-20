@@ -51,4 +51,3 @@ function showAddStoryForm() {
 
 
 $navSubmit.on("click", showAddStoryForm);
-$submitStoryForm.on("submit",putNewStoryOnPage);
