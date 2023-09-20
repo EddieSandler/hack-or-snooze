@@ -25,6 +25,8 @@ class Story {
 
   getHostName() {
     // UNIMPLEMENTED: complete this function!
+
+
     return "hostname.com";
   }
 }
@@ -75,9 +77,18 @@ class StoryList {
 
   async addStory( user, newStory ) {
     // UNIMPLEMENTED: complete this function!
-    console.log('user: ',user)
-    console.log('story:',newStory)
+    let response = await axios.post(`${BASE_URL}/stories`,
+    {
+      "token":user.loginToken,
+      "story": {
+          "author": user.name,
+          "title": newStory.title,
+          "url": newStory.url
+      }
+  })
+   return new Story(response.data)
   }
+
 }
 
 
