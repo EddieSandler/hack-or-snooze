@@ -35,7 +35,10 @@ function updateNavOnLogin() {
   $navLogOut.show();
 
   $loginForm.hide();
-  $signupForm.hide()
+  $signupForm.hide();
+  $allStoriesList.find("li").prepend($starIcon)
+
+  $("#nav-favorite").show();
 
   $navUserProfile.text(`${currentUser.username}`).show();
 }
@@ -43,8 +46,8 @@ function updateNavOnLogin() {
 
 // show story submit form when 'submit' is clcked
 function showAddStoryForm(evt) {
-  console.debug("navStoryForm")
-  $submitStoryForm.show()
+  console.debug("navStoryForm");
+  $submitStoryForm.show();
 
 
 }
