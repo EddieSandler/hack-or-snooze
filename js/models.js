@@ -81,7 +81,7 @@ class StoryList {
     {
       "token":user.loginToken,
       "story": {
-          "author": user.name,
+          "author": user.username,
           "title": newStory.title,
           "url": newStory.url
       }

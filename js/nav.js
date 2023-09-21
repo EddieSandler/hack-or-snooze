@@ -42,11 +42,11 @@ function updateNavOnLogin() {
 
 
 // show story submit form when 'submit' is clcked
-function showAddStoryForm() {
+function showAddStoryForm(evt) {
   console.debug("navStoryForm")
   $submitStoryForm.show()
- 
- 
+
+
 }
 
 
