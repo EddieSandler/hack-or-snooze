@@ -74,7 +74,7 @@ async function getStoryFormData(evt) {
 
   const story = await storyList.addStory(currentUser, formData);
   console.log('story',story);
-  const $newStory= await generateStoryMarkup(story)
+  const $newStory= generateStoryMarkup(story)
   $allStoriesList.prepend($newStory)
   $submitStoryForm.hide();
   $submitStoryForm.reset();
