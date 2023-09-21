@@ -54,21 +54,25 @@ function putStoriesOnPage() {
 
 //Gets the data from the Add story form, calls the .addStory method and puts that new story on the page.
 
-function getStoryFormData(evt) {
+ async function getStoryFormData(evt) {
   evt.preventDefault();
-  $submitStoryForm.hide()
-  console.debug('getStoryFormData')
+  $submitStoryForm.hide();
+
+
   const $author = $("#author-name").val();
-
   const $storyTitle = $("#story-title").val();
-
   const $storyURL = $("#story-url").val();
 
-  console.log($author,$storyTitle,$storyURL)
-  console.log('test')
+  const formData={
+    author:$author,
+    storyTitle:$storyTitle,
+    url:$storyURL
+  }
 
- }
- $submitStoryForm.on("submit",getStoryFormData)
+ let newStory = await storyList.addStory(currentUser,formData)
+console.log(newStory)
+}
+$submitStoryForm.on("submit", getStoryFormData)
 
 
 
