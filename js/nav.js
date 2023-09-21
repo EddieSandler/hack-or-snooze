@@ -37,6 +37,10 @@ function updateNavOnLogin() {
   $loginForm.hide();
   $signupForm.hide();
   $allStoriesList.find("li").prepend($starIcon)
+  $('.fa-star').click(function() {
+    $(this).toggleClass('fas far');
+  })
+
 
   $("#nav-favorite").show();
 
@@ -54,3 +58,5 @@ function showAddStoryForm(evt) {
 
 
 $navSubmit.on("click", showAddStoryForm);
+
+
