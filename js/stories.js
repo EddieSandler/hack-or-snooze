@@ -54,42 +54,23 @@ function putStoriesOnPage() {
 
 //Gets the data from the Add story form, calls the .addStory method and puts that new story on the page.
 
-// function putNewStoryOnPage() {
-//   // evt.preventDefault();
-//   // console.debug('putNewStoryOnPage')
-//   // const $author = $("#author-name").val();
+function getStoryFormData(evt) {
+  evt.preventDefault();
+  $submitStoryForm.hide()
+  console.debug('getStoryFormData')
+  const $author = $("#author-name").val();
 
-//   // const $storyTitle = $("#story-title").val();
+  const $storyTitle = $("#story-title").val();
 
-//   // const $storyURL = $("#story-url").val();
+  const $storyURL = $("#story-url").val();
 
-//   // console.log($author,$storyTitle,$storyURL)
-//   console.log('test')
+  console.log($author,$storyTitle,$storyURL)
+  console.log('test')
 
-// }
-
-
-$(document).ready(function() {
-  // Add a submit event listener to the form
-  $("#submit-story-form").submit(function(event) {
-    event.preventDefault(); // Prevent the default form submission
-console.log('test')
-    // Get the values from the form elements using jQuery
-    const author = $("#author-name").val();
-    const title = $("#story-title").val();
-    const url = $("#story-url").val();
-
-    // Create an object with the form data
-    const formData = {
-      author: author,
-      title: title,
-      url: url
-    }
-    console.log(formData.author,formData.title,formData.url)
-    });
+ }
+ $submitStoryForm.on("submit",getStoryFormData)
 
 
 
-  })
 
 
