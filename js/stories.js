@@ -57,9 +57,6 @@ function putStoriesOnPage() {
 async function getStoryFormData(evt) {
   console.log('get new story data')
   evt.preventDefault();
-
-
-
   const $author = $("#author-name").val();
   const $storyTitle = $("#story-title").val();
   const $storyURL = $("#story-url").val();
@@ -72,14 +69,16 @@ async function getStoryFormData(evt) {
     username:$user
   };
 
-  const story = await storyList.addStory(currentUser, formData);
-  console.log('story',story);
-  const $newStory= generateStoryMarkup(story)
+  const myStory = await storyList.addStory(currentUser, formData);
+  console.log('story',myStory);
+  const $myStory= generateStoryMarkup(myStory)
+
 
   $submitStoryForm.hide();
   $submitStoryForm.reset();
 
-  $allStoriesList.prepend($newStory)
+  $allStoriesList.prepend($myStory)
+  return myStory
 
 }
 
