@@ -51,11 +51,36 @@ function putStoriesOnPage() {
   $allStoriesList.show();
 }
 
+//put all user created stories on the page
+
+function putMyStoriesOnPage(e) {
+  $myStories.empty()
+  console.debug(putMyStoriesOnPage)
+  $allStoriesList.hide();
+  for (let story of currentUser.ownStories) {
+    const userStory = generateStoryMarkup(story);
+    $myStories.append(userStory);
+
+
+  }
+
+  $myStories.show();
+
+
+}
+
+$navmyStories.on("click",putMyStoriesOnPage)
+
+
+
+
+
+
 
 //Gets the data from the Add story form, calls the .addStory method and puts that new story on the page.
 
 async function getStoryFormData(evt) {
-  console.log('get new story data')
+  console.log('get new story data');
   evt.preventDefault();
   const $author = $("#author-name").val();
   const $storyTitle = $("#story-title").val();
@@ -66,19 +91,19 @@ async function getStoryFormData(evt) {
     author: $author,
     title: $storyTitle,
     url: $storyURL,
-    username:$user
+    username: $user
   };
 
   const myStory = await storyList.addStory(currentUser, formData);
-  console.log('story',myStory);
-  const $myStory= generateStoryMarkup(myStory)
+
+  const $myStory = generateStoryMarkup(myStory);
 
 
   $submitStoryForm.hide();
   $submitStoryForm.reset();
 
-  $allStoriesList.prepend($myStory)
-  return myStory
+  $allStoriesList.prepend($myStory);
+  return myStory;
 
 }
 

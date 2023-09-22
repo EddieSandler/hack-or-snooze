@@ -31,6 +31,7 @@ function updateNavOnLogin() {
   console.debug("updateNavOnLogin");
   $(".main-nav-links").show();
   $navSubmit.show();
+  $navmyStories.show();
   $navLogin.hide();
   $navLogOut.show();
 
@@ -58,5 +59,6 @@ function showAddStoryForm(evt) {
 
 
 $navSubmit.on("click", showAddStoryForm);
+
 
 

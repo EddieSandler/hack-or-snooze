@@ -9,7 +9,7 @@ const $allStoriesList = $("#all-stories-list");
 
 const $loginForm = $("#login-form");
 const $signupForm = $("#signup-form");
-const $addStoryForm= $("#submit-story-form")
+
 
 
 const $navLogin = $("#nav-login");
@@ -18,6 +18,10 @@ const $navLogOut = $("#nav-logout");
 
 const $navSubmit = $("#nav-submit")
 const $submitStoryForm = $("#submit-story-form");
+
+const $navmyStories = $("#nav-myStories")
+
+const $myStories= $("#user-stories")
 
 const $starIcon = '<i class="far fa-star"></i>'
 
