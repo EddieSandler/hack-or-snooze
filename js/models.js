@@ -76,7 +76,7 @@ class StoryList {
    */
 
   async addStory( user, newStory ) {
-    // UNIMPLEMENTED: complete this function!
+
     let response = await axios.post(`${BASE_URL}/stories`,
     {
       "token":user.loginToken,
@@ -206,4 +206,6 @@ class User {
       return null;
     }
   }
+
+
 }

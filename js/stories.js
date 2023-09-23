@@ -60,6 +60,7 @@ function putMyStoriesOnPage(e) {
   for (let story of currentUser.ownStories) {
     const userStory = generateStoryMarkup(story);
     $myStories.append(userStory);
+    userStory.prepend($trashIcon)
 
 
   }

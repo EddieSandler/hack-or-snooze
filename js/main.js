@@ -24,6 +24,7 @@ const $navmyStories = $("#nav-myStories")
 const $myStories= $("#user-stories")
 
 const $starIcon = '<i class="far fa-star"></i>'
+const $trashIcon='<i class="fa fa-trash" aria-hidden="true"></i>'
 
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After

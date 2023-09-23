@@ -10,6 +10,11 @@ function navAllStories(evt) {
   console.debug("navAllStories", evt);
   hidePageComponents();
   putStoriesOnPage();
+  $allStoriesList.find("li").prepend($starIcon);
+  $('.fa-star').click(function () {
+    $(this).toggleClass('fas far');
+  });
+
 }
 
 $body.on("click", "#nav-all", navAllStories);
@@ -37,10 +42,10 @@ function updateNavOnLogin() {
 
   $loginForm.hide();
   $signupForm.hide();
-  $allStoriesList.find("li").prepend($starIcon)
-  $('.fa-star').click(function() {
-    $(this).toggleClass('fas far');
-  })
+
+
+
+
 
 
   $("#nav-favorite").show();
@@ -60,5 +65,24 @@ function showAddStoryForm(evt) {
 
 $navSubmit.on("click", showAddStoryForm);
 
+async function makeFavoriteStory(){
 
+
+  let response= await axios.post('https://hack-or-snooze-v3.herokuapp.com/users/theDude2/favorites/4372222a-67a7-422c-9eef-a4e286e3388f',
+  {
+    token:`${currentUser.loginToken} ` })
+
+
+
+  console.log('future site of favorites',response);
+  //  return this.favorites
+  return response
+}
+
+
+
+
+
+
+$("#nav-favorite").on('click', makeFavoriteStory)
 
