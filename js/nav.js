@@ -37,6 +37,8 @@ function updateNavOnLogin() {
   $(".main-nav-links").show();
   $navSubmit.show();
   $navmyStories.show();
+  $myFavorites.show()
+
   $navLogin.hide();
   $navLogOut.show();
 
@@ -65,16 +67,17 @@ function showAddStoryForm(evt) {
 
 $navSubmit.on("click", showAddStoryForm);
 
-async function makeFavoriteStory(){
+async function makeFavoriteStory() {
 
 
-  let response= await axios.post('https://hack-or-snooze-v3.herokuapp.com/users/theDude2/favorites/4372222a-67a7-422c-9eef-a4e286e3388f',
-  {
-    token:`${currentUser.loginToken} ` })
+  let response = await axios.post('https://hack-or-snooze-v3.herokuapp.com/users/theDude2/favorites/4372222a-67a7-422c-9eef-a4e286e3388f',
+    {
+      token: `${currentUser.loginToken} `
+    })
 
 
 
-  console.log('future site of favorites',response);
+  console.log('future site of favorites', response);
   //  return this.favorites
   return response
 }

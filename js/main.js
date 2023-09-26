@@ -20,11 +20,12 @@ const $navSubmit = $("#nav-submit")
 const $submitStoryForm = $("#submit-story-form");
 
 const $navmyStories = $("#nav-myStories")
+const $myStories = $("#user-stories")
 
-const $myStories= $("#user-stories")
+const $myFavorites = $("#nav-favorite")
 
 const $starIcon = '<i class="far fa-star"></i>'
-const $trashIcon='<i class="fa fa-trash" aria-hidden="true"></i>'
+const $trashIcon = '<i class="fa fa-trash" aria-hidden="true"></i>'
 
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After

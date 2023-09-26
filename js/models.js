@@ -89,9 +89,17 @@ class StoryList {
    return new Story(response.data)
   }
 
+  async deleteStory (user,storyId){
+
+   axios({
+  url: `${BASE_URL}/stories/${storyId}`,
+  method: "DELETE",
+  data: { token: user.loginToken }
+});
+
 }
 
-
+}
 /******************************************************************************
  * User: a user in the system (only used to represent the current user)
  */
@@ -177,6 +185,10 @@ class User {
     );
   }
 
+
+
+
+  
   /** When we already have credentials (token & username) for a user,
    *   we can log them in automatically. This function does that.
    */
