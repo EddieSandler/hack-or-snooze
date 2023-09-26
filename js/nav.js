@@ -1,5 +1,5 @@
 "use strict";
-
+const baseURL='https://hack-or-snooze-v3.herokuapp.com'
 /******************************************************************************
  * Handling navbar clicks and updating navbar
  */
@@ -45,15 +45,15 @@ function updateNavOnLogin() {
   $loginForm.hide();
   $signupForm.hide();
 
-
-
-
-
-
-  $("#nav-favorite").show();
-
-  $navUserProfile.text(`${currentUser.username}`).show();
 }
+
+
+
+
+//   $("#nav-favorite").show();
+
+//   $navUserProfile.text(`${currentUser.username}`).show();
+// }
 
 
 // show story submit form when 'submit' is clcked
@@ -67,25 +67,25 @@ function showAddStoryForm(evt) {
 
 $navSubmit.on("click", showAddStoryForm);
 
-async function makeFavoriteStory() {
+// async function makeFavoriteStory() {
 
 
-  let response = await axios.post('https://hack-or-snooze-v3.herokuapp.com/users/theDude2/favorites/4372222a-67a7-422c-9eef-a4e286e3388f',
-    {
-      token: `${currentUser.loginToken} `
-    })
-
-
-
-  console.log('future site of favorites', response);
-  //  return this.favorites
-  return response
-}
+//   let response = await axios.post(`${baseUrl}/users/theDude2/favorites/4372222a-67a7-422c-9eef-a4e286e3388f`,
+//     {
+//       token: `${currentUser.loginToken} `
+//     })
 
 
 
+  // console.log('future site of favorites', response);
+  // //  return this.favorites
+  // return response
+// }
+// 
 
 
 
-$("#nav-favorite").on('click', makeFavoriteStory)
+
+
+// $("#nav-favorite").on('click', makeFavoriteStory)
 
