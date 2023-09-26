@@ -72,9 +72,26 @@ function putMyStoriesOnPage(e) {
 
 $navmyStories.on("click",putMyStoriesOnPage)
 
+//put favorite stories on page
+
+function putFavoriteStoriesOnPage(e) {
+  $myFavorites.empty()
+  console.debug(putFavoriteStoriesOnPage)
+  $allStoriesList.hide();
+  for (let story of currentUser.favorites) {
+    const favoriteStory = generateStoryMarkup(story);
+    $myFavorites.append(favoriteStory);
+    favoriteStory.prepend($starIcon)
 
 
+  }
 
+  $myFavorites.show();
+
+
+}
+
+$myFavorites.on("click",putFavoriteStoriesOnPage)
 
 
 
