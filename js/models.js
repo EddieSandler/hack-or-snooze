@@ -93,7 +93,7 @@ class StoryList {
    return new story
   }
 
-  async deleteStory (user,storyId){
+  async removeStory(user,storyId){
     const token = user.loginToken
    await axios({
   url: `${baseUrl}/stories/${storyId}`,

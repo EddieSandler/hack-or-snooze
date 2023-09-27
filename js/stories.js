@@ -81,8 +81,9 @@ async function deleteStory(evt) {
   await storyList.removeStory(currentUser, storyId);
 
   // re-generate story list
-  await putUserStoriesOnPage();
+  await putMyStoriesOnPage();
 }
+
 $myStories.on("click", ".trash-can", deleteStory);
 
 
@@ -108,13 +109,15 @@ $navmyStories.on("click",putMyStoriesOnPage)
 
 function putFavoriteStoriesOnPage(e) {
 
-   console.debug(putFavoriteStoriesOnPage)
-   $allStoriesList.hide();
-  $myFavorites.empty()
-for (let story of currentUser.favorites) {
-     const favoriteStory = generateStoryMarkup(story);
-     $myFavorites.append(favoriteStory);
 
+
+   if (currentUser.favorites.length === 0) {
+    $favoritedStories.append("<h5>No favorites added!</h5>");
+  } else {
+    // loop through all of users favorites and generate HTML for them
+    for (let story of currentUser.favorites) {
+      const $story = generateStoryMarkup(story);
+      $myFavorites.append($story);
 
 
    }
@@ -124,7 +127,7 @@ for (let story of currentUser.favorites) {
 
 
 }
-
+}
 
 
 
