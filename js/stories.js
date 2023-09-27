@@ -72,6 +72,19 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+async function deleteStory(evt) {
+  console.debug("deleteStory");
+
+  const $closestLi = $(evt.target).closest("li");
+  const storyId = $closestLi.attr("id");
+
+  await storyList.removeStory(currentUser, storyId);
+
+  // re-generate story list
+  await putUserStoriesOnPage();
+}
+$myStories.on("click", ".trash-can", deleteStory);
+
 
 //put all user created stories on the page
 
