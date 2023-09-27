@@ -19,6 +19,8 @@ const $navLogOut = $("#nav-logout");
 const $navSubmit = $("#nav-submit")
 const $submitStoryForm = $("#submit-story-form");
 
+const $storiesContainer=$('.stories-container container')
+
 const $navmyStories = $("#nav-myStories")
 const $myStories = $("#user-stories")
 

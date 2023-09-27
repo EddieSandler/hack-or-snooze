@@ -94,7 +94,6 @@ for (let story of currentUser.favorites) {
 
 }
 
-$navFavorites.on("click",putFavoriteStoriesOnPage)
 
 
 

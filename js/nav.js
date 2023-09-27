@@ -14,6 +14,7 @@ function navAllStories(evt) {
   $('.fa-star').click(function () {
     $(this).toggleClass('fas far');
   });
+  $myFavorites.hide()
 
 }
 
@@ -26,15 +27,27 @@ function navLoginClick(evt) {
   hidePageComponents();
   $loginForm.show();
   $signupForm.show();
+  $storiesContainer.hide()
+}
+$navLogin.on("click", navLoginClick);
+
+/** Hide everything but profile on click on "profile" */
+
+function navProfileClick(evt) {
+  console.debug("navProfileClick", evt);
+  hidePageComponents();
+  $userProfile.show();
 }
 
-$navLogin.on("click", navLoginClick);
+$navUserProfile.on("click", navProfileClick);
+
 
 /** When a user first logins in, update the navbar to reflect that. */
 
 function updateNavOnLogin() {
   console.debug("updateNavOnLogin");
-  $(".main-nav-links").show();
+  $(".main-nav-links").css('display', 'flex');
+  $navUserProfile.text(`${currentUser.username}`).show()
   $navSubmit.show();
   $navmyStories.show();
   $navFavorites.show()
@@ -42,8 +55,6 @@ function updateNavOnLogin() {
   $navLogin.hide();
   $navLogOut.show();
 
-  $loginForm.hide();
-  $signupForm.hide();
 
 }
 
@@ -54,7 +65,12 @@ function updateNavOnLogin() {
 // show story submit form when 'submit' is clcked
 function showAddStoryForm(evt) {
   console.debug("navStoryForm");
+  hidePageComponents();
+  $allStoriesList.show();
+  $myFavorites.hide()
   $submitStoryForm.show();
+
+
 
 
 }
@@ -62,7 +78,12 @@ function showAddStoryForm(evt) {
 
 $navSubmit.on("click", showAddStoryForm);
 
+function navFavorites(evt){
+  hidePageComponents();
+  putFavoriteStoriesOnPage()
 
+}
+$navFavorites.on("click",navFavorites)
 
 
 
