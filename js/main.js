@@ -6,6 +6,8 @@ const $body = $("body");
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
 const $allStoriesList = $("#all-stories-list");
+const $storiesLists = $(".stories-list");
+
 
 const $loginForm = $("#login-form");
 const $signupForm = $("#signup-form");
@@ -27,8 +29,8 @@ const $myStories = $("#user-stories")
 const $navFavorites = $("#nav-favorite")
 const $myFavorites= $("#favorite-stories")
 
-const $starIcon = '<i class="far fa-star"></i>'
-const $trashIcon = '<i class="fa fa-trash" aria-hidden="true"></i>'
+// const $starIcon = '<i class="far fa-star"></i>'
+// const $trashIcon = '<i class="fa fa-trash" aria-hidden="true"></i>'
 
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After

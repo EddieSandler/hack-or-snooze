@@ -19,18 +19,24 @@ async function getAndShowStoriesOnStart() {
  * Returns the markup for the story.
  */
 
-function generateStoryMarkup(story) {
-  // console.debug("generateStoryMarkup", story);
-
+function generateStoryMarkup(story,showDeleteBtn = false) {
   const hostName = story.getHostName();
+  // console.debug("generateStoryMarkup", story);
+  const showStar = Boolean(currentUser);
+
+
   return $(`
       <li id="${story.storyId}">
+      <div>
+      ${showDeleteBtn ? getDeleteBtnHTML() : ""}
+      ${showStar ? getStarHTML(story, currentUser) : ""}
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
         <small class="story-hostname">(${hostName})</small>
         <small class="story-author">by ${story.author}</small>
         <small class="story-user">posted by ${story.username}</small>
+        </div>
       </li>
     `);
 }
@@ -71,12 +77,12 @@ function putStoriesOnPage() {
 
 function putMyStoriesOnPage(e) {
   $myStories.empty()
-  console.debug(putMyStoriesOnPage)
-  $allStoriesList.hide();
+  console.debug('putMyStoriesOnPage')
+
   for (let story of currentUser.ownStories) {
-    const userStory = generateStoryMarkup(story);
+    const userStory = generateStoryMarkup(story,true);
     $myStories.append(userStory);
-    userStory.prepend($trashIcon)
+
   }
 
   $myStories.show();
@@ -95,7 +101,7 @@ function putFavoriteStoriesOnPage(e) {
 for (let story of currentUser.favorites) {
      const favoriteStory = generateStoryMarkup(story);
      $myFavorites.append(favoriteStory);
-     favoriteStory.prepend($starIcon)
+
 
 
    }
@@ -133,7 +139,7 @@ async function getStoryFormData(evt) {
 
   $submitStoryForm.hide();
   $submitStoryForm.reset();
-  $fav
+
 
   $myStories.prepend($myStory);
   return myStory;
@@ -143,6 +149,27 @@ async function getStoryFormData(evt) {
 $submitStoryForm.on("submit", getStoryFormData)
 
 
+async function toggleStoryFavorite(evt) {
+  console.debug("toggleStoryFavorite");
+
+  const $tgt = $(evt.target);
+  const $closestLi = $tgt.closest("li");
+  const storyId = $closestLi.attr("id");
+  const story = storyList.stories.find(s => s.storyId === storyId);
+
+  // see if the item is already favorited (checking by presence of star)
+  if ($tgt.hasClass("fas")) {
+    // currently a favorite: remove from user's fav list and change star
+    await currentUser.removeFavorite(story);
+    $tgt.closest("i").toggleClass("fas far");
+  } else {
+    // currently not a favorite: do the opposite
+    await currentUser.addFavorite(story);
+    $tgt.closest("i").toggleClass("fas far");
+  }
+}
+
+$storiesLists.on("click", ".star", toggleStoryFavorite);
 
 
 

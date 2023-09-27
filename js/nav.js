@@ -10,7 +10,7 @@ function navAllStories(evt) {
   console.debug("navAllStories", evt);
   hidePageComponents();
   putStoriesOnPage();
-  $allStoriesList.find("li").prepend($starIcon);
+
   $('.fa-star').click(function () {
     $(this).toggleClass('fas far');
   });

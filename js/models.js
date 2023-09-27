@@ -90,7 +90,7 @@ class StoryList {
   const story = new Story(response.data.story);
     this.stories.unshift(story);
     user.ownStories.unshift(story);
-   return new Story(response.data)
+   return new story
   }
 
   async deleteStory (user,storyId){
@@ -244,7 +244,7 @@ class User {
     const method = newState === "add" ? "POST" : "DELETE";
     const token = this.loginToken;
     await axios({
-      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      url: `${baseUrl}/users/${this.username}/favorites/${story.storyId}`,
       method: method,
       data: { token },
     });
