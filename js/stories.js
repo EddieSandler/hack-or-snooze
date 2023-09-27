@@ -66,6 +66,7 @@ function putMyStoriesOnPage(e) {
   }
 
   $myStories.show();
+  $myFavorites.hide()
 
 
 }
@@ -77,22 +78,23 @@ $navmyStories.on("click",putMyStoriesOnPage)
 function putFavoriteStoriesOnPage(e) {
 
    console.debug(putFavoriteStoriesOnPage)
-  //  $allStoriesList.hide();
-  $myStories.empty()
+   $allStoriesList.hide();
+  $myFavorites.empty()
 for (let story of currentUser.favorites) {
      const favoriteStory = generateStoryMarkup(story);
-     $myStories.append(favoriteStory);
-     $myStories.prepend($starIcon)
+     $myFavorites.append(favoriteStory);
+     favoriteStory.prepend($starIcon)
 
 
    }
 
-  
+   $myFavorites.show()
+   $myStories.hide();
 
 
 }
 
-$myFavorites.on("click",putFavoriteStoriesOnPage)
+$navFavorites.on("click",putFavoriteStoriesOnPage)
 
 
 
@@ -120,8 +122,9 @@ async function getStoryFormData(evt) {
 
   $submitStoryForm.hide();
   $submitStoryForm.reset();
+  $fav
 
-  $allStoriesList.prepend($myStory);
+  $myStories.prepend($myStory);
   return myStory;
 
 }

@@ -37,7 +37,7 @@ function updateNavOnLogin() {
   $(".main-nav-links").show();
   $navSubmit.show();
   $navmyStories.show();
-  $myFavorites.show()
+  $navFavorites.show()
 
   $navLogin.hide();
   $navLogOut.show();
@@ -49,11 +49,6 @@ function updateNavOnLogin() {
 
 
 
-
-//   $("#nav-favorite").show();
-
-//   $navUserProfile.text(`${currentUser.username}`).show();
-// }
 
 
 // show story submit form when 'submit' is clcked
@@ -67,25 +62,12 @@ function showAddStoryForm(evt) {
 
 $navSubmit.on("click", showAddStoryForm);
 
-// async function makeFavoriteStory() {
-
-
-//   let response = await axios.post(`${baseUrl}/users/theDude2/favorites/4372222a-67a7-422c-9eef-a4e286e3388f`,
-//     {
-//       token: `${currentUser.loginToken} `
-//     })
-
-
-
-  // console.log('future site of favorites', response);
-  // //  return this.favorites
-  // return response
-// }
-// 
 
 
 
 
 
-// $("#nav-favorite").on('click', makeFavoriteStory)
+
+
+
 

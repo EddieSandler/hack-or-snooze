@@ -22,7 +22,8 @@ const $submitStoryForm = $("#submit-story-form");
 const $navmyStories = $("#nav-myStories")
 const $myStories = $("#user-stories")
 
-const $myFavorites = $("#nav-favorite")
+const $navFavorites = $("#nav-favorite")
+const $myFavorites= $("#favorite-stories")
 
 const $starIcon = '<i class="far fa-star"></i>'
 const $trashIcon = '<i class="fa fa-trash" aria-hidden="true"></i>'
