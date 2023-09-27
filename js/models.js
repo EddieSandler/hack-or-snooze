@@ -1,6 +1,6 @@
 "use strict";
 
-const BASE_URL = "https://hack-or-snooze-v3.herokuapp.com";
+const baseUrl = "https://hack-or-snooze-v3.herokuapp.com";
 
 /******************************************************************************
  * Story: a single story in the system
@@ -57,7 +57,7 @@ class StoryList {
 
     // query the /stories endpoint (no auth required)
     const response = await axios({
-      url: `${BASE_URL}/stories`,
+      url: `${baseUrl}/stories`,
       method: "GET",
     });
 
@@ -77,7 +77,7 @@ class StoryList {
 
   async addStory( user, newStory ) {
 
-    let response = await axios.post(`${BASE_URL}/stories`,
+    let response = await axios.post(`${baseUrl}/stories`,
     {
       "token":user.loginToken,
       "story": {
@@ -86,16 +86,25 @@ class StoryList {
           "url": newStory.url
       }
   })
+
+  const story = new Story(response.data.story);
+    this.stories.unshift(story);
+    user.ownStories.unshift(story);
    return new Story(response.data)
   }
 
   async deleteStory (user,storyId){
-
-   axios({
-  url: `${BASE_URL}/stories/${storyId}`,
+    const token = user.loginToken
+   await axios({
+  url: `${baseUrl}/stories/${storyId}`,
   method: "DELETE",
   data: { token: user.loginToken }
 });
+this.stories = this.stories.filter(story => story.storyId !== storyId);
+
+    // do the same thing for the user's list of stories & their favorites
+    user.ownStories = user.ownStories.filter(s => s.storyId !== storyId);
+    user.favorites = user.favorites.filter(s => s.storyId !== storyId);
 
 }
 
@@ -139,7 +148,7 @@ class User {
 
   static async signup(username, password, name) {
     const response = await axios({
-      url: `${BASE_URL}/signup`,
+      url: `${baseUrl}/signup`,
       method: "POST",
       data: { user: { username, password, name } },
     });
@@ -166,7 +175,7 @@ class User {
 
   static async login(username, password) {
     const response = await axios({
-      url: `${BASE_URL}/login`,
+      url: `${baseUrl}/login`,
       method: "POST",
       data: { user: { username, password } },
     });
@@ -188,7 +197,7 @@ class User {
 
 
 
-  
+
   /** When we already have credentials (token & username) for a user,
    *   we can log them in automatically. This function does that.
    */
@@ -196,7 +205,7 @@ class User {
   static async loginViaStoredCredentials(token, username) {
     try {
       const response = await axios({
-        url: `${BASE_URL}/users/${username}`,
+        url: `${baseUrl}/users/${username}`,
         method: "GET",
         params: { token },
       });
@@ -217,6 +226,34 @@ class User {
       console.error("loginViaStoredCredentials failed", err);
       return null;
     }
+  }
+  async addFavorite(story) {
+    this.favorites.push(story);
+    await this._addOrRemoveFavorite("add", story)
+  }
+
+  /** Remove a story to the list of user favorites and update the API
+   * - story: the Story instance to remove from favorites
+   */
+
+  async removeFavorite(story) {
+    this.favorites = this.favorites.filter(s => s.storyId !== story.storyId);
+    await this._addOrRemoveFavorite("remove", story);
+  }
+  async _addOrRemoveFavorite(newState, story) {
+    const method = newState === "add" ? "POST" : "DELETE";
+    const token = this.loginToken;
+    await axios({
+      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      method: method,
+      data: { token },
+    });
+  }
+
+  /** Return true/false if given Story instance is a favorite of this user. */
+
+  isFavorite(story) {
+    return this.favorites.some(s => (s.storyId === story.storyId));
   }
 
 
