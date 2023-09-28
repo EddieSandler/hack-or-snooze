@@ -1,6 +1,6 @@
 /* Lists of stories */
 
-.stories-list, .user-stories {
+.stories-list {
   margin: 20px 5px;
 }
 
@@ -8,6 +8,14 @@
   color: gray;
   font-size: 0.8rem;
   margin: 10px 0;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 10px;
+}
+
+#favorited-stories,
+#my-stories {
+  list-style: none;
+  padding-left: 20px;
 }
 
 #stories-loading-msg {
